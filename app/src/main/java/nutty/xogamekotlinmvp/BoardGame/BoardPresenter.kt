@@ -1,4 +1,4 @@
-package nutty.xogamekotlinmvp
+package nutty.xogamekotlinmvp.BoardGame
 
 import android.app.Dialog
 import android.content.Context
@@ -7,11 +7,12 @@ import android.view.View
 import android.widget.ImageView
 import android.view.Window
 import android.widget.TextView
+import nutty.xogamekotlinmvp.R
 
 /**
  * Created by dhero on 10/24/2017.
  */
-class BoardPresenter(boardView : BoardView,context : Context) : BoardPresenterInterface,BoardPresenterInterface.CheckTheWinner{
+class BoardPresenter(boardView : BoardView, context : Context) : BoardPresenterInterface, BoardPresenterInterface.CheckTheWinner {
     private var boardView : BoardView? = boardView
     private var context : Context? = context
     private lateinit var message : String
@@ -28,11 +29,11 @@ class BoardPresenter(boardView : BoardView,context : Context) : BoardPresenterIn
         val markPosition = Integer.parseInt(mark.getTag().toString())
         if (mark.getDrawable() == null) {
             if (player == 1) {
-                boardView!!.setImage(view, ContextCompat.getDrawable(context,R.drawable.cross))
+                boardView!!.setImage(view, ContextCompat.getDrawable(context, R.drawable.cross))
                 boardPlay!![markPosition] = 1
                 player = 2
             } else if (player == 2) {
-                boardView!!.setImage(view, ContextCompat.getDrawable(context,R.drawable.circle) )
+                boardView!!.setImage(view, ContextCompat.getDrawable(context, R.drawable.circle) )
                 boardPlay!![markPosition] = 2
                 player = 1
             }

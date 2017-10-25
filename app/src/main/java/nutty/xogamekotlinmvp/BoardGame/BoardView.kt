@@ -1,4 +1,4 @@
-package nutty.xogamekotlinmvp
+package nutty.xogamekotlinmvp.BoardGame
 
 import android.app.Dialog
 import android.graphics.drawable.Drawable

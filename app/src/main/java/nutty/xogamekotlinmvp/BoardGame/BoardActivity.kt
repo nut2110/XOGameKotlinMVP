@@ -1,31 +1,38 @@
-package nutty.xogamekotlinmvp
+package nutty.xogamekotlinmvp.BoardGame
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
+import nutty.xogamekotlinmvp.Menu.MenuActivity
+import nutty.xogamekotlinmvp.R
 import nutty.xogamekotlinmvp.R.id.*
 
-class BoardActivity : AppCompatActivity(),BoardView {
+class BoardActivity : AppCompatActivity(), BoardView {
     var mDialog : Dialog? = null;
-    var boardPresenter : BoardPresenter? = null
+    var Presenter : BoardPresenter? = null
     var animationPlayer1: YoYo.YoYoString? = null
     var animationPlayer2: YoYo.YoYoString? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
-        boardPresenter = BoardPresenter(this,applicationContext)
-        boardPresenter!!.setupGame()
+
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
+        Presenter = BoardPresenter(this, applicationContext)
+        Presenter!!.setupGame()
     }
 
     fun onClick(view: View){
-        boardPresenter!!.playTurn(view)
+        Presenter!!.playTurn(view)
     }
 
     override fun setImage(view: View, drawable: Drawable) {
@@ -46,7 +53,7 @@ class BoardActivity : AppCompatActivity(),BoardView {
     }
 
     override fun onClickReset(view: View) {
-        boardPresenter!!.setupGame()
+        Presenter!!.setupGame()
         mDialog!!.dismiss()
     }
 
@@ -68,7 +75,12 @@ class BoardActivity : AppCompatActivity(),BoardView {
     }
 
     override fun onDestroy() {
-        boardPresenter!!.onDestroy()
+        Presenter!!.onDestroy()
         super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 }
