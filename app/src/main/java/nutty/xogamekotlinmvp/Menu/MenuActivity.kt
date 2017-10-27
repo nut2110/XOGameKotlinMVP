@@ -40,8 +40,6 @@ class MenuActivity : AppCompatActivity(), MenuView {
     @SuppressLint("WrongViewCast")
     override fun setTitle() {
         val title : TextView = findViewById<TextView>(R.id.title)
-        val font = Typeface.createFromAsset(assets, "fonts/Riffic-Bold.ttf")
-        title.setTypeface(font)
         YoYo.with(Techniques.Bounce).repeat(YoYo.INFINITE).playOn(title)
     }
 
